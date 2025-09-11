@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Reset và base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container chính */
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 300;
+}
+
+h2 {
+    text-align: center;
+    color: #f8f9fa;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+/* Highlight cho window.location */
+.mark {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+/* Form Section */
+.form-section {
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.form-header {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    padding: 20px 30px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.form-content {
+    padding: 30px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.form-row label {
+    min-width: 120px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-row select {
+    cursor: pointer;
+}
+
+.form-row small {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-left: 10px;
+}
+
+/* Button Styles */
+.button-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 150px;
+}
+
+.btn-navigate {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+}
+
+.btn-navigate:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+}
+
+.btn-replace {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+}
+
+.btn-replace:hover {
+    background: linear-gradient(135deg, #1e7e34, #155724);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+.btn-reload {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #212529;
+}
+
+.btn-reload:hover {
+    background: linear-gradient(135deg, #e0a800, #d39e00);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+}
+
+/* Danh sách chính */
+.list {
+    max-width: 850px;
+    margin: 0 auto;
+    list-style: none;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.list li {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+    font-size: 1.1rem;
+}
+
+.list li span {
+    margin-left: 13px;
+    font-weight: 400;
+}
+
+.list li:last-child {
+    border-bottom: none;
+}
+
+.list li:hover {
+    background-color: #f8f9fa;
+}
+
+.list li:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+/* Labels */
+.list li::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #495057;
+    min-width: 100px;
+}
+
+/* Values */
+.value {
+    color: #007bff;
+    font-family: "Courier New", monospace;
+    background: #e3f2fd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    max-width: 60%;
+    word-break: break-all;
+    text-align: right;
+}
+
+/* error */
+.input-error {
+    outline: 2.5px solid #dc3545;
+    animation: inputError 0.7s ease-in-out;
+}
+
+@keyframes inputError {
+    0% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .form-content {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .form-row label {
+        min-width: auto;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        min-width: auto;
+    }
+}
