@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Capture App</title>
+    <link rel="stylesheet" href="./camera.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📷 Camera Capture App</h1>
+            <p>Chụp ảnh và quay video dễ dàng với trình duyệt</p>
+        </header>
+
+        <main>
+            <!-- Video Stream Section -->
+            <div class="camera-section">
+                <h2>🎥 Video Stream</h2>
+                <div class="video-container">
+                    <video id="videoStream" autoplay playsinline muted></video>
+                    <div class="video-overlay">
+                        <div class="recording-indicator" id="recordingIndicator">
+                            <span class="recording-dot"></span>
+                            REC
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="startCamera" class="btn btn-start">
+                        <span class="btn-icon">📹</span>
+                        Start Camera
+                    </button>
+                    <button id="stopCamera" class="btn btn-stop" disabled>
+                        <span class="btn-icon">⏹️</span>
+                        Stop Camera
+                    </button>
+                </div>
+
+                <div id="cameraStatus" class="status-message"></div>
+            </div>
+
+            <!-- Photo Capture Section -->
+            <div class="camera-section">
+                <h2>📸 Photo Capture</h2>
+
+                <div class="capture-controls">
+                    <button id="takePhoto" class="btn btn-capture" disabled>
+                        <span class="btn-icon">📷</span>
+                        Take Photo
+                    </button>
+                    <button id="downloadPhoto" class="btn btn-download" disabled>
+                        <span class="btn-icon">💾</span>
+                        Download Photo
+                    </button>
+                </div>
+
+                <div class="photo-preview">
+                    <canvas id="photoCanvas" style="display: none;"></canvas>
+                    <img id="capturedPhoto" alt="Captured photo will appear here" />
+                    <div class="placeholder" id="photoPlaceholder">
+                        <div class="placeholder-icon">📷</div>
+                        <p>Ảnh vừa chụp sẽ hiển thị tại đây</p>
+                    </div>
+                </div>
+
+                <div id="photoStatus" class="status-message"></div>
+            </div>
+
+            <!-- Gallery Section -->
+            <!-- <div class="camera-section">
+                <h2>🖼️ Photo Gallery</h2>
+                <div class="gallery-controls">
+                    <button id="clearGallery" class="btn btn-clear">
+                        <span class="btn-icon">🗑️</span>
+                        Clear Gallery
+                    </button>
+                </div>
+                <div id="photoGallery" class="gallery">
+                    <div class="gallery-placeholder">
+                        <p>Chưa có ảnh nào trong gallery</p>
+                    </div>
+                </div>
+            </div> -->
+        </main>
+
+        <footer>
+            <p>💡 Tip: Cho phép truy cập camera để sử dụng tất cả tính năng</p>
+        </footer>
+    </div>
+
+    <script src="./camera.js"></script>
+</body>
+
+</html>

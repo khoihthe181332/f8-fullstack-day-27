@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Manager</title>
+    <link rel="stylesheet" href="./clipboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>3.1. Clipboard Manager</h1>
+        </header>
+
+        <main>
+            <div class="clipboard-section">
+                <h2>📝 Copy to Clipboard</h2>
+                <div class="input-group">
+                    <textarea id="textInput" placeholder="Nhập nội dung cần copy..." rows="4"></textarea>
+                    <button id="copyBtn" class="btn btn-copy">
+                        <span class="btn-icon">📋</span>
+                        Copy
+                    </button>
+                </div>
+                <div id="copyStatus" class="status-message"></div>
+            </div>
+
+            <div class="clipboard-section">
+                <h2>📥 Paste from Clipboard</h2>
+                <div class="input-group">
+                    <button id="pasteBtn" class="btn btn-paste">
+                        <span class="btn-icon">📄</span>
+                        Paste
+                    </button>
+                    <textarea id="textOutput" placeholder="Nội dung từ clipboard sẽ hiển thị tại đây..." rows="4"
+                        readonly></textarea>
+                </div>
+                <div id="pasteStatus" class="status-message"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./clipboard.js"></script>
+</body>
+
+</html>
