@@ -16,7 +16,7 @@ function showStatus(element, message, type) {
 
     setTimeout(() => {
         element.style.display = 'none';
-    }, 3000);
+    }, 2000);
 }
 
 copyBtn.addEventListener('click', () => {
@@ -29,7 +29,7 @@ copyBtn.addEventListener('click', () => {
         showStatus(copyStatus, 'Văn bản đã được sao chép vào clipboard!', 'success');
         navigator.clipboard.writeText(text);
         copyBtn.classList.add('success');
-        setTimeout(() => copyBtn.classList.remove('success'), 3000);
+        setTimeout(() => copyBtn.classList.remove('success'), 2000);
         return;
     }
 });
@@ -41,13 +41,13 @@ pasteBtn.addEventListener('click', () => {
     if (!text) {
         showStatus(pasteStatus, 'Không có văn bản nào trong clipboard để dán!', 'error');
         pasteBtn.classList.add('error');
-        setTimeout(() => pasteBtn.classList.remove('error'), 3000);
+        setTimeout(() => pasteBtn.classList.remove('error'), 2000);
         return;
     } else {
         text.then(clipText => (textOutput.value = clipText));
         showStatus(pasteStatus, 'Văn bản đã được dán từ clipboard!', 'success');
         pasteBtn.classList.add('success');
-        setTimeout(() => pasteBtn.classList.remove('success'), 3000);
+        setTimeout(() => pasteBtn.classList.remove('success'), 2000);
         return;
     }
 
