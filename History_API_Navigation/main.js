@@ -21,10 +21,22 @@ navBtns.forEach(btn => {
                     currentPage.classList.remove('active');
                     // Hiển thị trang được chọn
                     page.classList.add('active');
-                    // Thêm trạng thái vào lịch sử trình duyệt
+                    // Khi chuyển URL sẽ k reload
                     history.pushState({ page: pageId }, null, `${pageId}`);
                 }
             }
         });
     });
+});
+
+window.addEventListener("popstate", () => {
+    console.log(123);
+});
+
+window.addEventListener("keyup", (e) => {
+    console.log(e);
+    if (e.key === 'F5') {
+        e.preventDefault();
+        console.log("F5");
+    }
 });
