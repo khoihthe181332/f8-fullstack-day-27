@@ -63,18 +63,6 @@ body {
     color: white;
 }
 
-.nav-link.active::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background-color: #3498db;
-    border-radius: 50%;
-}
-
 /* Main Content Styles */
 .main-content {
     margin-top: 95px;
