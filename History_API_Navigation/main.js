@@ -7,7 +7,13 @@ let currentPage = 'home';
 const navLinks = $$('.nav-link'); // Các nút điều hướng
 const pages = $$('.page'); // Các trang nội dung
 
-// Hàm lấy hiển thị page 
+// Hàm lấy trang từ URL parameters
+function getPageFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('page') || 'home';
+}
+
+// Hàm hiển thị page
 function showPage(pageName) {
     pages.forEach(page => {
         page.classList.remove("active");
@@ -32,97 +38,111 @@ function updateActiveClass(pageName) {
     }
 }
 
+// Hàm cập nhật URL với search parameters
+function updateURL(pageName) {
+    const url = new URL(window.location);
+    if (pageName === 'home') {
+        // Xóa parameter nếu là trang home
+        url.searchParams.delete('page');
+    } else {
+        url.searchParams.set('page', pageName);
+    }
+
+    // Cập nhật URL mà không reload trang
+    history.pushState({ page: pageName }, null, url.toString());
+}
+
+// Hàm xử lý click menu
 function handleMenuClick(e) {
     e.preventDefault();
-    const pageName = e.target.dataset.page
+    const pageName = e.target.dataset.page;
+
     if (pageName === currentPage) return;
 
-    const newURL = `/${pageName}`;
-    history.pushState({ page: pageName }, null, newURL);
+    // Cập nhật URL với search parameter
+    updateURL(pageName);
 
+    // Hiển thị trang và cập nhật active state
     showPage(pageName);
     updateActiveClass(pageName);
+
+    // Cập nhật history length display
+    updateHistoryLength();
 }
 
 // Hàm khởi tạo khi trang được load
 function initializePage() {
-    // Lấy trang hiện tại từ URL
-    let pageName = 'home';
+    // Lấy trang hiện tại từ URL parameters
+    const pageName = getPageFromURL();
 
-    const currentURL = window.location.pathname;
-    switch (currentURL) {
-        case '/about':
-            pageName = 'about';
-            break;
-        case '/services':
-            pageName = 'services';
-            break;
-        case 'contact':
-            pageName = 'contact';
-            break
-        default:
-            pageName = 'home';
-            break;
-    };
+    // Kiểm tra trang có hợp lệ không
+    const validPages = ['home', 'about', 'services', 'contact'];
+    const pageToShow = validPages.includes(pageName) ? pageName : 'home';
 
-    // Hiển thị trang tương ứng với URL
-    showPage(pageName);
-    updateActiveClass(pageName);
+    // Hiển thị trang tương ứng với URL parameter
+    showPage(pageToShow);
+    updateActiveClass(pageToShow);
+
+    // Nếu URL không có parameter hoặc parameter không hợp lệ, cập nhật URL
+    if (pageName !== pageToShow) {
+        updateURL(pageToShow);
+    }
 }
 
+// Hàm cập nhật hiển thị history length
+function updateHistoryLength() {
+    const historyLength = $('#history-length');
+    if (historyLength) {
+        historyLength.innerText = history.length;
+    }
+}
 
-
+// Event listeners
 window.addEventListener("DOMContentLoaded", (e) => {
-    e.preventDefault();
-
+    // Khởi tạo trang
     initializePage();
 
-    // Xử lý click menu 
+    // Xử lý click menu
     navLinks.forEach(btn => {
         btn.addEventListener("click", handleMenuClick);
     });
 
-
+    // Xử lý nút back/forward của browser
     window.addEventListener("popstate", (e) => {
         let pageName = 'home';
 
+        console.log(pageName, e.state);
         if (e.state && e.state.page) {
             pageName = e.state.page;
         } else {
-            const currentURL = window.location.pathname;
-            switch (currentURL) {
-                case '/about':
-                    pageName = 'about';
-                    break;
-                case '/services':
-                    pageName = 'services';
-                    break;
-                case 'contact':
-                    pageName = 'contact';
-                    break
-                default:
-                    pageName = 'home';
-                    break;
-            };
+            pageName = getPageFromURL();
         }
 
+        // Kiểm tra trang có hợp lệ không
+        const validPages = ['home', 'about', 'services', 'contact'];
+        const pageToShow = validPages.includes(pageName) ? pageName : 'home';
 
-        showPage(pageName);
-        updateActiveClass(pageName);
+        showPage(pageToShow);
+        updateActiveClass(pageToShow);
+        updateHistoryLength();
     });
 
-    // Xử lý nút F5
-    window.addEventListener("keyup", (e) => {
-        e.preventDefault();
-        if (e.key === 'F5') {
-            console.log("F5 clicked");
+    // Xử lý nút F5 (optional - để debug)
+    window.addEventListener("keydown", (e) => {
+        if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+            console.log("Page refresh detected, current page:", getPageFromURL());
         }
     });
 
+    // Khởi tạo history length display
+    updateHistoryLength();
 });
 
-
-const historyLength = $('#history-length');
-historyLength.innerText = history.length; // Xử lý hiển thị history length
-
-
+// Xử lý khi trang được load lại (refresh/F5)
+window.addEventListener("load", () => {
+    // Đảm bảo trang hiển thị đúng sau khi refresh
+    const currentPageFromURL = getPageFromURL();
+    if (currentPageFromURL !== currentPage) {
+        initializePage();
+    }
+});
